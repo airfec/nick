@@ -3,4 +3,7 @@ const ctrl = require("./../controllers");
 const router = express.Router();
 
 router.get("/rooms/:id/bookings", ctrl.bookings.get);
+
+router.post('/rooms/:id/bookings',ctrl.bookings.post);
+
 module.exports = router;
