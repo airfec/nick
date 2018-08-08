@@ -9,4 +9,6 @@ router.post('/rooms/:id/bookings', ctrl.bookings.post);
 
 router.put('/rooms/:id/bookings', ctrl.bookings.put);
 
+router.delete('/rooms/:id/bookings', ctrl.bookings.delete);
+
 module.exports = router;

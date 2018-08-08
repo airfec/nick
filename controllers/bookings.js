@@ -21,16 +21,27 @@ module.exports = {
       if (err) {
         return res.status(500).send(err);
       }
-      return res.status(200).send(newTodoObj);
+      return res.status(200).send(newBooking);
     });
   },
 
-  put: db.Booking.findByIdAndUpdate(req.params.todoId, req.body, { new: true }, (err, todo) => {
-    if (err) {
-      return res.status(500).send(err);
-    }
-    return res.send(todo);
-  }),
+  put: (req, res) => {
+    db.Booking.findByIdAndUpdate(req.params.bookingId, req.body, { new: true }, (err, booking) => {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      return res.send(booking);
+    });
+  },
+  delete: (req, res) => {
+    db.Booking.findByIdAndRemove(req.params.bookingId, (err, booking) => {
+      if (err) return res.status(500).send(err);
+      const response = {
+        message: 'successfully deleted',
+      };
+      return res.status(200).send(response);
+    });
+  },
 
   create(req, res) {},
 };
