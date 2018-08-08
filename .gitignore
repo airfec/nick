@@ -28,3 +28,5 @@ dist/
 # AWS
 aws-keys.json
 
+#configs
+.vscode
