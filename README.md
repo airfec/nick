@@ -46,6 +46,13 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 - npm v3.5.2
 - MongoDB v3.6.3
 
+### Rest API
+
+GET | route: api/rooms/:id/bookings | Get's the room/bookings info from the db
+POST | route: api/rooms/:id/bookings | Creates a new room/bookings in the db
+PUT | route: api/rooms/:id/bookings | Updates a room in the db
+DELETE | route: api/rooms/:id/bookings| Removes a room in the db
+
 ### Installing Dependencies
 
 From within the root directory:

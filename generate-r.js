@@ -1,63 +1,41 @@
 const fs = require('fs');
 const faker = require('faker');
 
-const createDataJSON = (id) => {
-  const dataItem = {};
-  dataItem.roomId = id;
-
-  dataItem.price = faker.random.number({
+const createRoomData = () => {
+  const price = faker.random.number({
     min: 50,
     max: 400,
   });
-
-  dataItem.numberOfBookings = faker.random.number({
-    min: 1,
-    max: 45,
-  });
-
-  dataItem.bookings = [];
-
-  for (let i = 0; i < dataItem.numberOfBookings; i++) {
-    const booking = {};
-    booking.checkIn = faker.date.between('2018-07-24', '2019-12-31');
-    booking.duration = faker.random.number({
-      min: 1,
-      max: 31,
-    });
-
-    dataItem.bookings.push(booking);
-  }
-
-  dataItem.serviceFee = faker.random.number({
+  const serviceFee = faker.random.number({
     min: 15,
     max: 50,
   });
 
-  dataItem.cleaningFee = faker.random.number({
+  const cleaningFee = faker.random.number({
     min: 5,
     max: 35,
   });
 
-  dataItem.minimumStay = faker.random.number({
+  const minimumStay = faker.random.number({
     max: 3,
   });
 
-  dataItem.maxAdults = faker.random.number({
+  const maxAdults = faker.random.number({
     min: 2,
     max: 8,
   });
 
-  dataItem.maxChildren = faker.random.number({
+  const maxChildren = faker.random.number({
     min: 2,
     max: 8,
   });
 
-  dataItem.maxInfants = faker.random.number({
+  const maxInfants = faker.random.number({
     min: 2,
     max: 4,
   });
 
-  dataItem.taxes = faker.random.number({
+  const taxes = faker.random.number({
     min: 5,
     max: 40,
   });
@@ -80,7 +58,7 @@ const createDataJSON = (id) => {
   ];
   const funFacts = [
     'It’s been viewed 500+ times in the past week.',
-    `It’s been booked ${dataItem.taxes} times in the past year.`,
+    `It’s been booked ${taxes} times in the past year.`,
     'The owner takes pictures of all the tenants.',
     'This is a top rated listing.',
     'The owner is a gentleman and a scholar.',
@@ -89,8 +67,8 @@ const createDataJSON = (id) => {
     "It's rated in the top 5% for cleanliness.",
   ];
 
-  dataItem.funFactTitles = funFactTitles[num1];
-  dataItem.funFacts = funFacts[num2];
+  const funFactTitle = funFactTitles[num1];
+  const funFact = funFacts[num2];
 
   // Shape of dataItem object
   //     {
@@ -106,16 +84,16 @@ const createDataJSON = (id) => {
   //       maxInfants: Number,
   //       taxes: Number
   //   }
+
+  const dataItem = `${price},${serviceFee},${cleaningFee},${minimumStay},${maxAdults},${maxChildren},${maxInfants},${funFactTitle},${funFact}`;
   return dataItem;
 };
-const writeJSON = () => {
-  const out = fs.createWriteStream('./bookings.json');
-  const records = Array(1000000)
-    .fill()
-    .map((e, i) => JSON.stringify(createDataJSON(i)));
-  records.forEach((data) => {
-    out.write(`${data},\n`);
-  });
+
+const writeRoomCSV = () => {
+  const out = fs.createWriteStream('./rooms.csv');
+  for (let i = 0; i < 10000000; i++) {
+    out.write(`${createRoomData()}\n`);
+  }
 };
 
-writeJSON();
+writeRoomCSV();
