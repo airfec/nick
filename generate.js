@@ -113,8 +113,8 @@ const writeJSON = () => {
   const records = Array(1000000)
     .fill()
     .map((e, i) => JSON.stringify(createDataJSON(i)));
-  records.forEach((i) => {
-    out.write(`${i},\n`);
+  records.forEach((data) => {
+    out.write(`${data},\n`);
   });
 };
 

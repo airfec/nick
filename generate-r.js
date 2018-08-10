@@ -2,7 +2,6 @@ const fs = require('fs');
 const faker = require('faker');
 
 const createRoomData = () => {
-  // let roomId = id;
   const price = faker.random.number({
     min: 50,
     max: 400,
@@ -92,10 +91,6 @@ const createRoomData = () => {
 
 const writeRoomCSV = () => {
   const out = fs.createWriteStream('./rooms.csv');
-  // const records = Array(10000000)
-  //   .fill()
-  //   .map((e, i) => createRoomData());
-  // records.forEach((i) => {
   for (let i = 0; i < 10000000; i++) {
     out.write(`${createRoomData()}\n`);
   }
