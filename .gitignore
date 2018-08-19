@@ -28,3 +28,16 @@ dist/
 # AWS
 aws-keys.json
 
+#configs
+.vscode
+
+#data
+bookings.json
+bookings1.csv
+bookings2.csv
+bookings3.csv
+bookings4.csv
+rooms.csv
+
+#new relic config
+newrelic.js
